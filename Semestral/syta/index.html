@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Syta · Gestión de citas médicas para clínicas y consultorios">
+  <title>Syta · Gestión de Citas Médicas</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- ================= LOGIN ================= -->
+  <section id="login-view" class="login hidden" aria-label="Inicio de sesión">
+    <div class="login__brand">
+      <div class="brand">
+        <div class="brand__logo brand__logo--light"><i data-lucide="activity"></i></div>
+        <div>
+          <div class="brand__name">Syta</div>
+          <div class="brand__tag">Gestión de citas médicas</div>
+        </div>
+      </div>
+
+      <div class="login__headline">
+        <h2>Tu clínica organizada, tus pacientes atendidos a tiempo.</h2>
+        <p>Reserva, consulta y administra citas médicas desde una sola plataforma, sin llamadas ni filas.</p>
+        <ul class="login__features">
+          <li><span class="feat-icon"><i data-lucide="calendar-check"></i></span> Reservas en línea con horarios en tiempo real</li>
+          <li><span class="feat-icon"><i data-lucide="shield-check"></i></span> Sin reservas duplicadas ni horarios cruzados</li>
+          <li><span class="feat-icon"><i data-lucide="layout-dashboard"></i></span> Panel administrativo con agenda y reportes</li>
+        </ul>
+      </div>
+
+      <p class="login__note">Versión de demostración · Fase 1 (frontend). Todos los datos son ficticios.</p>
+    </div>
+
+    <div class="login__panel">
+      <div class="login__card">
+        <div class="brand">
+          <div class="brand__logo"><i data-lucide="activity"></i></div>
+          <div>
+            <div class="brand__name">Syta</div>
+            <div class="brand__tag">Gestión de citas médicas</div>
+          </div>
+        </div>
+
+        <h1>Bienvenido de nuevo</h1>
+        <p>Ingresa tus credenciales para acceder a tu cuenta.</p>
+
+        <form id="login-form" class="login__form" novalidate>
+          <div class="field" data-field="email">
+            <label for="login-email">Correo electrónico</label>
+            <div class="input-icon">
+              <i data-lucide="mail"></i>
+              <input id="login-email" class="input" type="email" placeholder="nombre@correo.com" autocomplete="username">
+            </div>
+            <p class="field-error"></p>
+          </div>
+
+          <div class="field" data-field="password">
+            <label for="login-password">Contraseña</label>
+            <div class="input-icon">
+              <i data-lucide="lock"></i>
+              <input id="login-password" class="input" type="password" placeholder="••••••••" autocomplete="current-password">
+              <button type="button" class="input-action" id="toggle-password" aria-label="Mostrar contraseña">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+            <p class="field-error"></p>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg btn--block">
+            <i data-lucide="log-in"></i> Iniciar sesión
+          </button>
+        </form>
+
+        <div class="login__divider">Acceso de demostración</div>
+
+        <div class="demo-grid">
+          <button type="button" class="demo-btn" data-demo="patient">
+            <span class="demo-btn__icon"><i data-lucide="user-round"></i></span>
+            <span><strong>Paciente</strong><small>María F. González</small></span>
+          </button>
+          <button type="button" class="demo-btn demo-btn--admin" data-demo="admin">
+            <span class="demo-btn__icon"><i data-lucide="shield-plus"></i></span>
+            <span><strong>Administrador</strong><small>Recepción</small></span>
+          </button>
+        </div>
+
+        <p class="login__footer">
+          ¿Datos de prueba modificados?
+          <button type="button" class="link-btn" id="reset-demo">Restablecer datos de demostración</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= APLICACIÓN ================= -->
+  <div id="app-view" class="app hidden">
+    <aside class="sidebar" id="sidebar" aria-label="Menú principal">
+      <div class="sidebar__brand brand">
+        <div class="brand__logo"><i data-lucide="activity"></i></div>
+        <div>
+          <div class="brand__name">Syta</div>
+          <div class="brand__tag" id="sidebar-tag">Portal</div>
+        </div>
+      </div>
+      <div class="sidebar__role" id="sidebar-role"></div>
+      <div class="sidebar__section">Menú</div>
+      <nav class="sidebar__nav" id="sidebar-nav"></nav>
+      <div class="sidebar__footer">
+        <button type="button" class="nav-item nav-item--danger" id="logout-btn">
+          <i data-lucide="log-out"></i> Cerrar sesión
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button type="button" class="icon-btn topbar__menu" id="menu-toggle" aria-label="Abrir menú">
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="topbar__title">
+          <h1 id="page-title">Inicio</h1>
+          <p id="page-subtitle"></p>
+        </div>
+        <div class="topbar__actions">
+          <div class="topbar__date"><i data-lucide="calendar"></i><span id="topbar-date"></span></div>
+          <div class="dropdown" id="notif-dropdown">
+            <button type="button" class="icon-btn" id="notif-btn" aria-label="Notificaciones">
+              <i data-lucide="bell"></i>
+              <span class="badge-dot hidden" id="notif-count">0</span>
+            </button>
+            <div class="dropdown__panel" id="notif-panel"></div>
+          </div>
+          <div id="user-chip-slot"></div>
+        </div>
+      </header>
+
+      <main class="content" id="content"></main>
+    </div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <!-- Iconos -->
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+
+  <!-- Núcleo -->
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+
+  <!-- Capa de servicios (lógica de negocio, reemplazable por HTTP en la fase 2) -->
+  <script src="assets/js/services/notification.service.js"></script>
+  <script src="assets/js/services/schedule.service.js"></script>
+  <script src="assets/js/services/professional.service.js"></script>
+  <script src="assets/js/services/patient.service.js"></script>
+  <script src="assets/js/services/appointment.service.js"></script>
+  <script src="assets/js/services/auth.service.js"></script>
+
+  <!-- Capa de presentación -->
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/appointments.js"></script>
+  <script src="assets/js/patient.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/professionals.js"></script>
+  <script src="assets/js/schedules.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

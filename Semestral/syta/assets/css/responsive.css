@@ -1,0 +1,54 @@
+/* =========================================================
+   Syta · Diseño responsive
+   ========================================================= */
+
+@media (max-width: 1280px) {
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .booking { grid-template-columns: minmax(0, 1fr) 300px; }
+}
+
+@media (max-width: 1080px) {
+  /* Sidebar off-canvas */
+  .sidebar { transform: translateX(-100%); box-shadow: var(--shadow-lg); }
+  .app.sidebar-open .sidebar { transform: translateX(0); }
+  .app.sidebar-open .sidebar-backdrop {
+    display: block; position: fixed; inset: 0; z-index: 45; background: rgba(15, 23, 42, .4); animation: fadeIn .2s ease;
+  }
+  .main { margin-left: 0; }
+  .topbar__menu { display: inline-grid; }
+  .grid-main, .grid-3, .grid-profile, .grid-schedule { grid-template-columns: minmax(0, 1fr); }
+  .booking { grid-template-columns: minmax(0, 1fr); }
+  .booking__aside { position: static; }
+  .login { grid-template-columns: 1fr; }
+  .login__brand { display: none; }
+}
+
+@media (max-width: 768px) {
+  .topbar { padding: 0 16px; gap: 10px; }
+  .topbar__date, .user-chip__info { display: none; }
+  .user-chip { padding: 4px; }
+  .content { padding: 20px 16px 40px; }
+  .grid-2 { grid-template-columns: minmax(0, 1fr); }
+  .hero { flex-direction: column; align-items: stretch; padding: 22px; }
+  .hero h2 { font-size: 1.3rem; }
+  .hero__next { min-width: 0; }
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .form-grid .span-2 { grid-column: auto; }
+  .detail-grid { grid-template-columns: minmax(0, 1fr); }
+  .detail-item.span-2 { grid-column: auto; }
+  .toolbar .field, .toolbar .field--search { min-width: 100%; }
+  .modal__foot .btn { flex: 1; }
+  .card { padding: 18px; }
+}
+
+@media (max-width: 520px) {
+  .grid-4 { grid-template-columns: minmax(0, 1fr); }
+  .demo-grid { grid-template-columns: 1fr; }
+  .appt-grid, .pro-grid { grid-template-columns: minmax(0, 1fr); }
+  .appt-card__meta { grid-template-columns: 1fr; }
+  .stat__value { font-size: 1.45rem; }
+  .topbar__title h1 { font-size: 1.05rem; }
+  .topbar__title p { display: none; }
+  .modal-overlay { padding: 10px; align-items: flex-end; }
+  .modal { border-radius: 20px; }
+}
